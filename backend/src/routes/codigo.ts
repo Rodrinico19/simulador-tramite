@@ -23,7 +23,8 @@ export function crearRouterCodigo(clienteCorreo: ClienteCorreo): Router {
 
     try {
       await clienteCorreo.enviarCodigo(correo, codigo);
-    } catch {
+    } catch (error) {
+      console.error("Error al enviar código:", error);
       return res.json({ ok: false, motivo: "error_envio" });
     }
 
