@@ -671,6 +671,7 @@ export default defineConfig({
     environment: "jsdom",
     setupFiles: "./src/setupTests.ts",
     globals: true,
+    passWithNoTests: true,
   },
 });
 ```
@@ -1274,11 +1275,9 @@ export const datosIniciales: DatosRegistroBps = {
 - [ ] **Step 2: Create `frontend/src/tramites/registro-bps/pasos/Introduccion.tsx`**
 
 ```tsx
-import type { PropsPaso } from "../../../engine/tipos";
-import type { DatosRegistroBps } from "../tipos";
 import { Card } from "../../../components/Card";
 
-export function Introduccion(_props: PropsPaso<DatosRegistroBps>) {
+export function Introduccion() {
   return (
     <Card>
       <p>
