@@ -6,7 +6,7 @@ export function App() {
   const [tramiteActivo, setTramiteActivo] = useState<string | null>(null);
 
   if (tramiteActivo === "registro-bps") {
-    return <RegistroBps />;
+    return <RegistroBps onSalir={() => setTramiteActivo(null)} />;
   }
 
   return <Home onSeleccionarTramite={setTramiteActivo} />;

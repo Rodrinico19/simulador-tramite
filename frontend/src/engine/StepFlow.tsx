@@ -6,9 +6,10 @@ import { Button } from "../components/Button";
 
 interface StepFlowProps<TDatos> {
   pasos: DefinicionPaso<TDatos>[];
+  onSalir?: () => void;
 }
 
-export function StepFlow<TDatos>({ pasos }: StepFlowProps<TDatos>) {
+export function StepFlow<TDatos>({ pasos, onSalir }: StepFlowProps<TDatos>) {
   const { pasoActual, totalPasos, datos, actualizarDatos, puedeAvanzar, errorPaso, avanzar, retroceder } =
     useFlujo<TDatos>();
   const paso = pasos[pasoActual];
@@ -17,6 +18,11 @@ export function StepFlow<TDatos>({ pasos }: StepFlowProps<TDatos>) {
   return (
     <div className="step-flow">
       <Banner texto="Esto es una simulación educativa. Ningún dato real de BPS se procesa aquí." />
+      {onSalir && (
+        <Button variante="secundario" onClick={onSalir}>
+          Volver al inicio
+        </Button>
+      )}
       <ProgressBar pasoActual={pasoActual + 1} totalPasos={totalPasos} />
       <h2>{paso.titulo}</h2>
       <Componente datos={datos} actualizarDatos={actualizarDatos} />
