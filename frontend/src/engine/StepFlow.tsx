@@ -29,9 +29,11 @@ export function StepFlow<TDatos>({ pasos }: StepFlowProps<TDatos>) {
         <Button variante="secundario" onClick={retroceder} disabled={pasoActual === 0}>
           Atrás
         </Button>
-        <Button onClick={avanzar} disabled={!puedeAvanzar}>
-          {pasoActual === totalPasos - 1 ? "Finalizar" : "Siguiente"}
-        </Button>
+        {pasoActual < totalPasos - 1 && (
+          <Button onClick={avanzar} disabled={!puedeAvanzar}>
+            Siguiente
+          </Button>
+        )}
       </div>
     </div>
   );
