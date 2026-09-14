@@ -21,10 +21,6 @@ export function guardarCodigo(correo: string, codigo: string): void {
   });
 }
 
-export function obtenerIntentosEnvio(correo: string): number {
-  return codigos.get(correo)?.intentosEnvio ?? 0;
-}
-
 export function obtenerEntrada(correo: string): EntradaCodigo | undefined {
   const entrada = codigos.get(correo);
   if (!entrada) return undefined;
@@ -33,6 +29,10 @@ export function obtenerEntrada(correo: string): EntradaCodigo | undefined {
     return undefined;
   }
   return entrada;
+}
+
+export function obtenerIntentosEnvio(correo: string): number {
+  return obtenerEntrada(correo)?.intentosEnvio ?? 0;
 }
 
 export function borrarCodigo(correo: string): void {
