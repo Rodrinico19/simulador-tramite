@@ -16,6 +16,10 @@ npm run dev
 
 Frontend en http://localhost:5173, backend en http://localhost:3001.
 
+### Nota: Limitación de Resend en desarrollo
+
+El plan gratuito de Resend solo permite enviar emails a la dirección registrada en la cuenta. Para probar la verificación por email con otras direcciones, se requiere verificar un dominio en la cuenta de Resend (no incluido en este proyecto).
+
 ## Tests
 
 ```bash
