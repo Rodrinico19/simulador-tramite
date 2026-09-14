@@ -1,0 +1,29 @@
+.checkbox-grande {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 18px;
+}
+
+.checkbox-grande input[type="checkbox"] {
+  width: 28px;
+  height: 28px;
+}
+
+.codigo-simulado {
+  font-size: 32px;
+  font-weight: 700;
+  font-family: monospace;
+  letter-spacing: 4px;
+  text-align: center;
+  margin: 16px 0;
+}
+
+.revision-lista dt {
+  font-weight: 600;
+  margin-top: 12px;
+}
+
+.revision-lista dd {
+  margin: 4px 0 0;
+}

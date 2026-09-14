@@ -1,0 +1,15 @@
+.step-flow {
+  max-width: 100%;
+}
+
+.step-flow__navegacion {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 24px;
+}
+
+.error-paso {
+  color: #b00020;
+  font-size: 16px;
+}

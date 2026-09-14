@@ -1,3 +1,4 @@
+import "./registro-bps.css";
 import { ProveedorFlujo } from "../../engine/ContextoFlujo";
 import { StepFlow } from "../../engine/StepFlow";
 import { pasosRegistroBps } from "./pasos";

@@ -16,3 +16,9 @@ body {
   margin: 0 auto;
   padding: 24px 16px;
 }
+
+.home {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}

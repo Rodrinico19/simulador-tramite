@@ -1,3 +1,4 @@
+import "./StepFlow.css";
 import type { DefinicionPaso } from "./tipos";
 import { useFlujo } from "./ContextoFlujo";
 import { ProgressBar } from "../components/ProgressBar";
