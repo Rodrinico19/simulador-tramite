@@ -11,7 +11,7 @@ let resendInstance: Resend | null = null;
 
 function obtenerResend(): Resend {
   if (!resendInstance) {
-    resendInstance = new Resend(apiKey || "dummy-key-for-testing");
+    resendInstance = new Resend(apiKey);
   }
   return resendInstance;
 }
