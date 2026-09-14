@@ -5,7 +5,7 @@ import { clienteResend, type ClienteCorreo } from "./resend";
 
 export function crearApp(clienteCorreo: ClienteCorreo = clienteResend): Express {
   const app = express();
-  app.use(cors());
+  app.use(cors({ origin: "http://localhost:5173" }));
   app.use(express.json());
   app.use("/api", crearRouterCodigo(clienteCorreo));
   return app;
