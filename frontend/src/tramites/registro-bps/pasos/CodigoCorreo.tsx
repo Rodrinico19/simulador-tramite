@@ -44,7 +44,7 @@ export function CodigoCorreo({ datos, actualizarDatos }: PropsPaso<DatosRegistro
   return (
     <div>
       <p>Vamos a mandarte un código real a tu correo para que practiques cómo se valida — no vamos a guardar tu correo.</p>
-      <Button onClick={handleEnviar} disabled={enviando}>
+      <Button onClick={handleEnviar} disabled={enviando || datos.codigoCorreoValidado}>
         {enviando ? "Enviando…" : "Enviarme el código"}
       </Button>
       {datos.codigoCorreoEnviado && (
@@ -55,7 +55,10 @@ export function CodigoCorreo({ datos, actualizarDatos }: PropsPaso<DatosRegistro
             value={codigoIngresado}
             onChange={(e) => setCodigoIngresado(e.target.value)}
           />
-          <Button onClick={handleValidar} disabled={validando || codigoIngresado.trim().length === 0}>
+          <Button
+            onClick={handleValidar}
+            disabled={validando || datos.codigoCorreoValidado || codigoIngresado.trim().length === 0}
+          >
             {validando ? "Validando…" : "Validar"}
           </Button>
         </>
