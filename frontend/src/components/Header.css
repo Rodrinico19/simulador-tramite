@@ -1,0 +1,32 @@
+.header {
+  display: flex;
+  align-items: flex-end;
+  padding-bottom: var(--espaciado-md);
+  margin-bottom: var(--espaciado-lg);
+  border-bottom: 1px solid var(--color-borde);
+}
+
+.header__marca {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.header__titulo {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--color-primario);
+}
+
+.header__subtitulo {
+  font-size: 13px;
+  color: var(--color-texto-suave);
+}
+
+@media (max-width: 480px) {
+  .header {
+    flex-wrap: wrap;
+  }
+}
+

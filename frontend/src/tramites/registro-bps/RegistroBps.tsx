@@ -11,7 +11,11 @@ interface RegistroBpsProps {
 export function RegistroBps({ onSalir }: RegistroBpsProps) {
   return (
     <ProveedorFlujo pasos={pasosRegistroBps} datosIniciales={datosIniciales}>
-      <StepFlow pasos={pasosRegistroBps} onSalir={onSalir} />
+      <StepFlow
+        pasos={pasosRegistroBps}
+        onSalir={onSalir}
+        textoBanner="Esto es una simulación educativa. Ningún dato real de BPS se procesa aquí."
+      />
     </ProveedorFlujo>
   );
 }

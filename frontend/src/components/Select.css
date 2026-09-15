@@ -1,15 +1,15 @@
-.text-field {
+.select-campo {
   margin-bottom: var(--espaciado-md);
 }
 
-.text-field__etiqueta {
+.select-campo__etiqueta {
   display: block;
   font-size: 18px;
   font-weight: 600;
   margin-bottom: 4px;
 }
 
-.text-field__input {
+.select-campo__control {
   width: 100%;
   min-height: 48px;
   font-size: 18px;
@@ -17,16 +17,18 @@
   padding: 8px 12px;
   border: 2px solid var(--color-borde);
   border-radius: var(--radio-borde);
+  background-color: var(--color-superficie);
   box-sizing: border-box;
   transition: border-color 0.15s ease;
 }
 
-.text-field__input:focus-visible {
+.select-campo__control:focus-visible {
   outline: none;
   border-color: var(--color-primario);
 }
 
-.text-field__error {
-  color: var(--color-error);
-  font-size: 16px;
+.select-campo__control:disabled {
+  color: var(--color-texto);
+  opacity: 1;
+  background-color: var(--color-superficie);
 }

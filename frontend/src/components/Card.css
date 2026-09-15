@@ -1,6 +1,12 @@
 .card {
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  padding: 16px;
-  margin-bottom: 16px;
+  background-color: var(--color-superficie);
+  border: 1px solid var(--color-borde);
+  border-radius: var(--radio-borde);
+  box-shadow: var(--sombra-tarjeta);
+  padding: var(--espaciado-lg) var(--espaciado-md);
+  margin-bottom: var(--espaciado-md);
+}
+
+.card h2 {
+  margin-top: 0;
 }

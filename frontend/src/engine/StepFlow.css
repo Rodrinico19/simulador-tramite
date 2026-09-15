@@ -5,11 +5,23 @@
 .step-flow__navegacion {
   display: flex;
   justify-content: space-between;
-  gap: 16px;
-  margin-top: 24px;
+  gap: var(--espaciado-md);
+  margin-top: var(--espaciado-lg);
+}
+
+.step-flow__navegacion .boton {
+  flex: 1;
 }
 
 .error-paso {
-  color: #b00020;
+  color: var(--color-error);
   font-size: 16px;
+  margin-top: var(--espaciado-md);
+  margin-bottom: 0;
+}
+
+@media (max-width: 400px) {
+  .step-flow__navegacion {
+    flex-direction: column-reverse;
+  }
 }

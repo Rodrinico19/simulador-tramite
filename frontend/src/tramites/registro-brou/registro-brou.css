@@ -1,0 +1,201 @@
+.brou-pagina {
+  --brou-azul: #1b5c96;
+  --brou-azul-oscuro: #123f66;
+  --brou-gris-boton: #9aa0a6;
+  --brou-gris-boton-hover: #878d94;
+  --brou-borde-campo: #b9c7d6;
+
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: var(--brou-azul);
+}
+
+/* El layout global limita #root a 640px; el trámite de BROU necesita ocupar todo el ancho. */
+#root:has(.brou-pagina) {
+  max-width: none;
+  padding: 0;
+}
+
+.brou-pagina__header,
+.brou-pagina__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--espaciado-md);
+  padding: var(--espaciado-md) var(--espaciado-lg);
+  max-width: 1100px;
+  margin: 0 auto;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.brou-pagina__header {
+  padding-top: var(--espaciado-lg);
+  padding-bottom: var(--espaciado-lg);
+}
+
+.brou-pagina__marca {
+  font-size: 24px;
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: 1px;
+}
+
+.brou-pagina__salir {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: transparent;
+  border: none;
+  color: #ffffff;
+  opacity: 0.9;
+  font-size: 15px;
+  font-weight: 700;
+  font-family: inherit;
+  cursor: pointer;
+  padding: 4px;
+}
+
+.brou-pagina__salir:hover {
+  opacity: 1;
+}
+
+.brou-pagina__salir-icono {
+  flex-shrink: 0;
+}
+
+.brou-pagina__contenido {
+  flex: 1;
+  max-width: 1100px;
+  margin: 0 auto;
+  width: 100%;
+  padding: 0 var(--espaciado-lg) var(--espaciado-lg);
+  box-sizing: border-box;
+}
+
+.brou-pagina__contenido .banner {
+  background-color: var(--color-aviso-fondo);
+  border-color: var(--color-aviso-borde);
+}
+
+.brou-pagina__contenido .card {
+  padding: var(--espaciado-lg) 32px 32px;
+  border: none;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+}
+
+.brou-pagina__contenido .card h2 {
+  color: var(--brou-azul);
+}
+
+.brou-pagina__contenido .text-field__input,
+.brou-pagina__contenido .select-campo__control {
+  border-color: var(--brou-borde-campo);
+}
+
+.brou-pagina__contenido .text-field__input:focus-visible,
+.brou-pagina__contenido .select-campo__control:focus-visible {
+  border-color: var(--brou-azul);
+}
+
+.brou-pagina__contenido .progress-bar__texto {
+  color: #ffffff;
+  opacity: 0.85;
+}
+
+.brou-pagina__contenido .progress-bar__pista {
+  background-color: rgba(255, 255, 255, 0.25);
+}
+
+.brou-pagina__contenido .progress-bar__relleno {
+  background-color: #ffffff;
+}
+
+.brou-pagina__contenido .boton {
+  border-radius: 999px;
+  min-height: 48px;
+}
+
+.brou-pagina__contenido .step-flow__navegacion {
+  justify-content: flex-start;
+}
+
+.brou-pagina__contenido .step-flow__navegacion .boton {
+  flex: none;
+  padding: 0 32px;
+}
+
+.brou-pagina__contenido .boton--primario {
+  background-color: var(--brou-azul);
+}
+
+.brou-pagina__contenido .boton--primario:hover:not(:disabled) {
+  background-color: var(--brou-azul-oscuro);
+}
+
+.brou-pagina__contenido .boton--secundario {
+  background-color: var(--brou-gris-boton);
+  color: #ffffff;
+  border-color: var(--brou-gris-boton);
+}
+
+.brou-pagina__contenido .boton--secundario:hover:not(:disabled) {
+  background-color: var(--brou-gris-boton-hover);
+  border-color: var(--brou-gris-boton-hover);
+}
+
+.brou-pagina__footer {
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  flex-wrap: wrap;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.brou-pagina__footer-marca {
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.codigo-simulado {
+  font-size: 32px;
+  font-weight: 700;
+  font-family: monospace;
+  letter-spacing: 4px;
+  text-align: center;
+  color: var(--color-primario);
+  background-color: var(--color-primario-suave);
+  border-radius: var(--radio-borde);
+  margin: var(--espaciado-md) 0;
+  padding: var(--espaciado-sm);
+}
+
+.revision-lista dt {
+  font-weight: 600;
+  color: var(--color-texto-suave);
+  margin-top: var(--espaciado-md);
+}
+
+.revision-lista dd {
+  margin: 4px 0 0;
+}
+
+@media (max-width: 700px) {
+  .brou-pagina__header,
+  .brou-pagina__footer,
+  .brou-pagina__contenido {
+    padding-left: var(--espaciado-md);
+    padding-right: var(--espaciado-md);
+  }
+
+  .brou-pagina__contenido .card {
+    padding: var(--espaciado-md);
+  }
+
+  .codigo-simulado {
+    font-size: 24px;
+    letter-spacing: 2px;
+  }
+}

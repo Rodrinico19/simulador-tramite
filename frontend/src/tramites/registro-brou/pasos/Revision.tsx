@@ -1,17 +1,16 @@
 import { useState } from "react";
 import type { PropsPaso } from "../../../engine/tipos";
-import type { DatosRegistroBps } from "../tipos";
+import type { DatosRegistroBrou } from "../tipos";
 import { Button } from "../../../components/Button";
 
 const APRENDIZAJES = [
-  "El alta del Usuario Personal BPS se pide en persona, no online.",
-  "Después de pedirlo, llega un correo con un enlace de activación.",
-  "Ese enlace pide un código por SMS para confirmar tu celular.",
-  "Tenés que aceptar términos y condiciones antes de seguir.",
-  "Un segundo correo te deja crear tu contraseña definitiva.",
+  "El alta de eBROU se inicia en persona: un cajero RedBROU, una TAS o una sucursal del banco.",
+  "Ahí se genera un código de invitación, válido por 5 días.",
+  "Con tu número de documento y ese código entrás a eBROU y te registrás.",
+  "La contraseña definitiva debe tener entre 10 y 30 caracteres y al menos 3 de 4 tipos de caracteres.",
 ];
 
-export function Revision({ datos }: PropsPaso<DatosRegistroBps>) {
+export function Revision({ datos }: PropsPaso<DatosRegistroBrou>) {
   const [confirmado, setConfirmado] = useState(false);
 
   if (confirmado) {
@@ -32,16 +31,8 @@ export function Revision({ datos }: PropsPaso<DatosRegistroBps>) {
     <div>
       <p>Revisá los datos antes de confirmar:</p>
       <dl className="revision-lista">
-        <dt>Nombre</dt>
-        <dd>
-          {datos.nombre} {datos.apellido}
-        </dd>
-        <dt>Cédula</dt>
-        <dd>{datos.cedula}</dd>
-        <dt>Celular</dt>
-        <dd>{datos.celular}</dd>
-        <dt>Correo</dt>
-        <dd>{datos.correo}</dd>
+        <dt>Número de documento</dt>
+        <dd>{datos.numeroDocumento}</dd>
       </dl>
       <Button onClick={() => setConfirmado(true)}>Confirmar</Button>
     </div>

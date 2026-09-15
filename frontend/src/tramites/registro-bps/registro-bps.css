@@ -8,6 +8,7 @@
 .checkbox-grande input[type="checkbox"] {
   width: 28px;
   height: 28px;
+  accent-color: var(--color-primario);
 }
 
 .codigo-simulado {
@@ -16,14 +17,26 @@
   font-family: monospace;
   letter-spacing: 4px;
   text-align: center;
-  margin: 16px 0;
+  color: var(--color-primario);
+  background-color: var(--color-primario-suave);
+  border-radius: var(--radio-borde);
+  margin: var(--espaciado-md) 0;
+  padding: var(--espaciado-sm);
 }
 
 .revision-lista dt {
   font-weight: 600;
-  margin-top: 12px;
+  color: var(--color-texto-suave);
+  margin-top: var(--espaciado-md);
 }
 
 .revision-lista dd {
   margin: 4px 0 0;
+}
+
+@media (max-width: 400px) {
+  .codigo-simulado {
+    font-size: 24px;
+    letter-spacing: 2px;
+  }
 }
