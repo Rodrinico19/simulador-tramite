@@ -47,20 +47,30 @@
     }
 
     carpetaDoble.addEventListener("dblclick", () => {
+      carpetaDoble.textContent = "\u{1F4C2}";
+      carpetaDoble.classList.add("carpeta--abierta");
+
       doblesRealizados++;
       actualizarContadorDoble();
-      if (doblesRealizados >= TOTAL_DOBLE) {
-        mensajeDoble.hidden = false;
-        carpetaDoble.hidden = true;
-      } else {
-        moverCarpetaDoble();
-      }
+
+      setTimeout(() => {
+        carpetaDoble.classList.remove("carpeta--abierta");
+        carpetaDoble.textContent = "\u{1F4C1}";
+        if (doblesRealizados >= TOTAL_DOBLE) {
+          mensajeDoble.hidden = false;
+          carpetaDoble.hidden = true;
+        } else {
+          moverCarpetaDoble();
+        }
+      }, 450);
     });
 
     document.getElementById("reiniciar-doble").addEventListener("click", () => {
       doblesRealizados = 0;
       actualizarContadorDoble();
       mensajeDoble.hidden = true;
+      carpetaDoble.classList.remove("carpeta--abierta");
+      carpetaDoble.textContent = "\u{1F4C1}";
       moverCarpetaDoble();
     });
 

@@ -16,8 +16,8 @@
     <div class="juego-card juego-clic juego-card--solo">
       <p>Hacele clic con el boton derecho del mouse a la carpeta y elegí cualquier opcion del menu que aparece.</p>
       <p class="contador-clic" id="contador-derecho">0 / 10</p>
-      <div class="area" id="area-derecho">
-        <button type="button" class="carpeta" id="carpeta-derecho">&#x1F4C1;</button>
+      <div class="area area--grande" id="area-derecho">
+        <button type="button" class="carpeta carpeta--grande carpeta--centrada" id="carpeta-derecho">&#x1F4C1;</button>
         <div class="menu-contextual" id="menu-contextual" hidden>
           <button type="button">Abrir</button>
           <button type="button">Copiar</button>
@@ -44,11 +44,7 @@
       contadorDerecho.textContent = clicsDerechos + " / " + TOTAL_DERECHO;
     }
 
-    function moverCarpetaDerecho() {
-      const maxX = Math.max(areaDerecho.clientWidth - 120, 0);
-      const maxY = Math.max(areaDerecho.clientHeight - 120, 0);
-      carpetaDerecho.style.left = Math.random() * maxX + "px";
-      carpetaDerecho.style.top = Math.random() * maxY + "px";
+    function mostrarCarpetaDerecho() {
       carpetaDerecho.hidden = false;
     }
 
@@ -77,7 +73,7 @@
           mensajeDerecho.hidden = false;
           carpetaDerecho.hidden = true;
         } else {
-          moverCarpetaDerecho();
+          mostrarCarpetaDerecho();
         }
       });
     });
@@ -93,11 +89,11 @@
       actualizarContadorDerecho();
       mensajeDerecho.hidden = true;
       ocultarMenu();
-      moverCarpetaDerecho();
+      mostrarCarpetaDerecho();
     });
 
     actualizarContadorDerecho();
-    moverCarpetaDerecho();
+    mostrarCarpetaDerecho();
   </script>
 </body>
 </html>
