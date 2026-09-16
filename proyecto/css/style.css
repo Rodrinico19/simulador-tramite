@@ -405,3 +405,84 @@ body {
   padding: 0;
   line-height: 1;
 }
+
+.vidas {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  font-size: 1.8rem;
+}
+
+.corazon {
+  display: inline-block;
+  transition: opacity 0.35s ease, transform 0.35s ease;
+}
+
+.corazon.rota {
+  animation: romper-corazon 0.35s ease;
+}
+
+.corazon.perdida {
+  opacity: 0;
+  transform: scale(0.4) rotate(20deg);
+}
+
+@keyframes romper-corazon {
+  0% { transform: scale(1); }
+  30% { transform: scale(1.35) rotate(-12deg); }
+  60% { transform: scale(0.8) rotate(10deg); }
+  100% { transform: scale(1); }
+}
+
+.mensaje-perdiste {
+  color: #b91c1c;
+  font-weight: bold;
+  font-size: 1.3rem;
+  line-height: 1.4;
+}
+
+.pulso-zona {
+  position: relative;
+  width: 100%;
+  height: 260px;
+  margin: 16px 0;
+  cursor: none;
+}
+
+.pulso-pista {
+  position: absolute;
+  left: 5%;
+  right: 5%;
+  top: 50%;
+  height: 66px;
+  transform: translateY(-50%);
+  background-color: #fff;
+  border: 5px solid #1e293b;
+  border-radius: 10px;
+}
+
+.pulso-etiqueta {
+  position: absolute;
+  top: -38px;
+  font-weight: bold;
+  font-size: 1.1rem;
+  color: #475569;
+}
+
+.pulso-etiqueta--salida {
+  left: 0;
+}
+
+.pulso-etiqueta--meta {
+  right: 0;
+}
+
+.pulso-cuadrado {
+  position: absolute;
+  width: 48px;
+  height: 48px;
+  background-color: #2563eb;
+  border: 3px solid #1e3a8a;
+  border-radius: 8px;
+  pointer-events: none;
+}
