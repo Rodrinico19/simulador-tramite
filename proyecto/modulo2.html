@@ -26,6 +26,46 @@
     <a class="btn-descarga" href="assets/descargas/clase2.pdf" download>Descargar PDF de la clase</a>
   </div>
 
+  <div class="leccion ejercicios">
+    <h2>Ejercicios Practicos</h2>
+
+    <div class="juegos-grid">
+      <a class="ejercicio-card ejercicio-card--1" href="modulo2-ejercicio1.html">
+        <span class="icono">&#x1F5B1;&#xFE0F;</span>
+        <h3>Doble Clic</h3>
+        <p>Hacele doble clic a la carpeta para abrirla, 10 veces.</p>
+      </a>
+
+      <a class="ejercicio-card ejercicio-card--2" href="modulo2-ejercicio2.html">
+        <span class="icono">&#x1F4C4;</span>
+        <h3>Arrastrar y Soltar</h3>
+        <p>Arrastrá el archivo hasta la carpeta, 8 veces.</p>
+      </a>
+
+      <a class="ejercicio-card ejercicio-card--3" href="modulo2-ejercicio3.html">
+        <span class="icono">&#x1F5B1;&#xFE0F;</span>
+        <h3>Clic Derecho</h3>
+        <p>Hacele clic derecho a la carpeta y elegí una opcion del menu, 10 veces.</p>
+      </a>
+    </div>
+  </div>
+
+  <div class="leccion">
+    <h2>Carpetas y Clic Derecho</h2>
+
+    <div class="carrusel">
+      <img class="carrusel__img" id="carrusel-img-2" src="assets/clase2-carpetas/slide1.png" alt="Diapositiva 1 de 9">
+
+      <div class="carrusel__controles">
+        <button type="button" id="carrusel-prev-2">&larr; Anterior</button>
+        <span class="carrusel__contador" id="carrusel-contador-2">1 / 9</span>
+        <button type="button" id="carrusel-next-2">Siguiente &rarr;</button>
+      </div>
+    </div>
+
+    <a class="btn-descarga" href="assets/descargas/clase2-carpetas.pdf" download>Descargar PDF de practica de carpetas</a>
+  </div>
+
   <script>
     const slides = [
       "assets/clase2/slide1.png",
@@ -60,6 +100,38 @@
 
     document.getElementById("carrusel-next").addEventListener("click", () => {
       mostrarSlide((indiceActual + 1) % slides.length);
+    });
+
+    const slides2 = [
+      "assets/clase2-carpetas/slide1.png",
+      "assets/clase2-carpetas/slide2.png",
+      "assets/clase2-carpetas/slide3.png",
+      "assets/clase2-carpetas/slide4.png",
+      "assets/clase2-carpetas/slide5.png",
+      "assets/clase2-carpetas/slide6.png",
+      "assets/clase2-carpetas/slide7.png",
+      "assets/clase2-carpetas/slide8.png",
+      "assets/clase2-carpetas/slide9.png"
+    ];
+
+    let indiceActual2 = 0;
+
+    const imgEl2 = document.getElementById("carrusel-img-2");
+    const contadorEl2 = document.getElementById("carrusel-contador-2");
+
+    function mostrarSlide2(indice) {
+      indiceActual2 = indice;
+      imgEl2.src = slides2[indiceActual2];
+      imgEl2.alt = "Diapositiva " + (indiceActual2 + 1) + " de " + slides2.length;
+      contadorEl2.textContent = (indiceActual2 + 1) + " / " + slides2.length;
+    }
+
+    document.getElementById("carrusel-prev-2").addEventListener("click", () => {
+      mostrarSlide2((indiceActual2 - 1 + slides2.length) % slides2.length);
+    });
+
+    document.getElementById("carrusel-next-2").addEventListener("click", () => {
+      mostrarSlide2((indiceActual2 + 1) % slides2.length);
     });
   </script>
 </body>
