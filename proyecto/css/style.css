@@ -212,6 +212,18 @@ body {
   color: #475569;
 }
 
+.descargas-multiples {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 16px;
+}
+
+.descargas-multiples .btn-descarga {
+  margin-top: 0;
+}
+
 .btn-descarga {
   display: inline-block;
   margin-top: 16px;
