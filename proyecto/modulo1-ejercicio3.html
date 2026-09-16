@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ejercicio 3 - Apuntar y Hacer Clic</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="header-pagina">
+    <a class="volver" href="modulo1.html">&larr; Volver</a>
+    <h1>Apuntar y Hacer Clic</h1>
+  </div>
+
+  <div class="leccion">
+    <div class="juego-card juego-clic juego-card--solo">
+      <p>Buscá la carpeta y hacele clic. Cada vez que le acertás, aparece una nueva en otro lugar.</p>
+      <p class="contador-clic" id="contador-clic">0 / 30</p>
+      <div class="area" id="area-clic">
+        <button type="button" class="carpeta" id="carpeta-clic">&#x1F4C1;</button>
+      </div>
+      <p class="mensaje-exito" id="mensaje-clic" hidden>&#x2705; &iexcl;Completado! Hiciste clic en las 30 carpetas.</p>
+      <button type="button" class="btn-reintentar" id="reiniciar-clic">Jugar de nuevo</button>
+    </div>
+  </div>
+
+  <script>
+    const TOTAL_CARPETAS = 30;
+
+    const areaClic = document.getElementById("area-clic");
+    const carpetaClic = document.getElementById("carpeta-clic");
+    const mensajeClic = document.getElementById("mensaje-clic");
+    const contadorClic = document.getElementById("contador-clic");
+
+    let clicsRealizados = 0;
+
+    function actualizarContador() {
+      contadorClic.textContent = clicsRealizados + " / " + TOTAL_CARPETAS;
+    }
+
+    function moverCarpeta() {
+      const maxX = Math.max(areaClic.clientWidth - 120, 0);
+      const maxY = Math.max(areaClic.clientHeight - 120, 0);
+      carpetaClic.style.left = Math.random() * maxX + "px";
+      carpetaClic.style.top = Math.random() * maxY + "px";
+      carpetaClic.hidden = false;
+    }
+
+    carpetaClic.addEventListener("click", () => {
+      clicsRealizados++;
+      actualizarContador();
+      if (clicsRealizados >= TOTAL_CARPETAS) {
+        mensajeClic.hidden = false;
+        carpetaClic.hidden = true;
+      } else {
+        moverCarpeta();
+      }
+    });
+
+    document.getElementById("reiniciar-clic").addEventListener("click", () => {
+      clicsRealizados = 0;
+      actualizarContador();
+      mensajeClic.hidden = true;
+      moverCarpeta();
+    });
+
+    actualizarContador();
+    moverCarpeta();
+  </script>
+</body>
+</html>

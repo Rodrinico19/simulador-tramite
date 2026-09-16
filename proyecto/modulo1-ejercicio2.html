@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ejercicio 2 - Apuntar y Quedarse Quieto</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="header-pagina">
+    <a class="volver" href="modulo1.html">&larr; Volver</a>
+    <h1>Apuntar y Quedarse Quieto</h1>
+  </div>
+
+  <div class="leccion">
+    <div class="juego-card juego-quieto juego-card--solo">
+      <p>Poné el mouse sobre el circulo y no lo muevas por 15 segundos.</p>
+      <div class="objetivo" id="objetivo-quieto" style="--progreso:0">0%</div>
+      <p class="mensaje-exito" id="mensaje-quieto" hidden>&#x2705; &iexcl;Completado! Te quedaste quieto 15 segundos.</p>
+      <button type="button" class="btn-reintentar" id="reiniciar-quieto">Reiniciar</button>
+    </div>
+  </div>
+
+  <script>
+    const objetivoQuieto = document.getElementById("objetivo-quieto");
+    const mensajeQuieto = document.getElementById("mensaje-quieto");
+    const DURACION_QUIETO = 15000;
+    let progresoQuieto = 0;
+    let intervaloQuieto = null;
+
+    function actualizarObjetivo() {
+      const porcentaje = Math.min(100, Math.round((progresoQuieto / DURACION_QUIETO) * 100));
+      objetivoQuieto.style.setProperty("--progreso", porcentaje);
+      objetivoQuieto.textContent = porcentaje + "%";
+    }
+
+    objetivoQuieto.addEventListener("mouseenter", () => {
+      if (progresoQuieto >= DURACION_QUIETO) return;
+      intervaloQuieto = setInterval(() => {
+        progresoQuieto += 100;
+        actualizarObjetivo();
+        if (progresoQuieto >= DURACION_QUIETO) {
+          clearInterval(intervaloQuieto);
+          mensajeQuieto.hidden = false;
+        }
+      }, 100);
+    });
+
+    objetivoQuieto.addEventListener("mouseleave", () => {
+      clearInterval(intervaloQuieto);
+      if (progresoQuieto < DURACION_QUIETO) {
+        progresoQuieto = 0;
+        actualizarObjetivo();
+      }
+    });
+
+    document.getElementById("reiniciar-quieto").addEventListener("click", () => {
+      clearInterval(intervaloQuieto);
+      progresoQuieto = 0;
+      actualizarObjetivo();
+      mensajeQuieto.hidden = true;
+    });
+  </script>
+</body>
+</html>
