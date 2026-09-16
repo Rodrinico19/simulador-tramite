@@ -14,18 +14,19 @@
 
   <div class="leccion">
     <div class="juego-card juego-clic juego-card--solo">
-      <p>Buscá la carpeta y hacele clic. Cada vez que le acertás, aparece una nueva en otro lugar.</p>
+      <p>Buscá el icono y hacele clic. Cada vez que le acertás, aparece otro distinto en otro lugar.</p>
       <p class="contador-clic" id="contador-clic">0 / 30</p>
       <div class="area" id="area-clic">
         <button type="button" class="carpeta" id="carpeta-clic">&#x1F4C1;</button>
       </div>
-      <p class="mensaje-exito" id="mensaje-clic" hidden>&#x2705; &iexcl;Completado! Hiciste clic en las 30 carpetas.</p>
+      <p class="mensaje-exito" id="mensaje-clic" hidden>&#x2705; &iexcl;Completado! Hiciste clic en los 30 iconos.</p>
       <button type="button" class="btn-reintentar" id="reiniciar-clic">Jugar de nuevo</button>
     </div>
   </div>
 
   <script>
     const TOTAL_CARPETAS = 30;
+    const ICONOS = ["\u{1F4C1}", "\u{1F5D1}\u{FE0F}", "\u{26BD}", "\u{1F5A5}\u{FE0F}", "\u{1F5B1}\u{FE0F}", "\u{2328}\u{FE0F}", "\u{1F4F7}", "\u{1F3B5}", "\u{1F4C4}", "\u{1F3AC}"];
 
     const areaClic = document.getElementById("area-clic");
     const carpetaClic = document.getElementById("carpeta-clic");
@@ -43,6 +44,7 @@
       const maxY = Math.max(areaClic.clientHeight - 120, 0);
       carpetaClic.style.left = Math.random() * maxX + "px";
       carpetaClic.style.top = Math.random() * maxY + "px";
+      carpetaClic.textContent = ICONOS[Math.floor(Math.random() * ICONOS.length)];
       carpetaClic.hidden = false;
     }
 
