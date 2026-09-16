@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ejercicio 6 - Colocar Manzanas al Arbolito</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="header-pagina">
+    <a class="volver" href="modulo1.html">&larr; Volver</a>
+    <h1>Colocar Manzanas al Arbolito</h1>
+  </div>
+
+  <div class="leccion">
+    <div class="juego-card juego-manzanas juego-card--solo">
+      <p>Hacé clic en las hojas verdes de los 3 arboles para poner manzanas. Si el punto queda fuera del verde, o muy pegado a otra manzana, perdés una vida.</p>
+
+      <div class="vidas" id="vidas-manzanas">
+        <span class="corazon">&#x2764;&#xFE0F;</span>
+        <span class="corazon">&#x2764;&#xFE0F;</span>
+        <span class="corazon">&#x2764;&#xFE0F;</span>
+      </div>
+
+      <div class="arboles-contadores">
+        <span id="contador-arbol-0">Arbol 1: 0 / 20</span>
+        <span id="contador-arbol-1">Arbol 2: 0 / 20</span>
+        <span id="contador-arbol-2">Arbol 3: 0 / 20</span>
+      </div>
+
+      <div class="escena" id="escena-manzanas">
+        <div class="sol"></div>
+        <div class="arboles">
+          <div class="arbol" data-arbol="0">
+            <div class="hoja-copa hoja-copa--superior"></div>
+            <div class="hoja-copa hoja-copa--inferior"></div>
+            <div class="tronco"></div>
+          </div>
+          <div class="arbol" data-arbol="1">
+            <div class="hoja-copa hoja-copa--superior"></div>
+            <div class="hoja-copa hoja-copa--inferior"></div>
+            <div class="tronco"></div>
+          </div>
+          <div class="arbol" data-arbol="2">
+            <div class="hoja-copa hoja-copa--superior"></div>
+            <div class="hoja-copa hoja-copa--inferior"></div>
+            <div class="tronco"></div>
+          </div>
+        </div>
+        <div class="suelo"></div>
+        <div class="manzana-cursor" id="manzana-cursor" hidden>
+          <div class="manzana-cursor__tallo"></div>
+          <div class="manzana-cursor__cuerpo"></div>
+        </div>
+      </div>
+
+      <p class="mensaje-exito" id="mensaje-manzanas" hidden>&#x2705; &iexcl;Completado! Los 3 arboles tienen sus manzanas.</p>
+      <p class="mensaje-perdiste" id="mensaje-perdiste-manzanas" hidden>&#x1F494; &iexcl;Te quedaste sin vidas!<br>Empezar de Nuevo</p>
+      <button type="button" class="btn-reintentar" id="reiniciar-manzanas">Reiniciar</button>
+    </div>
+  </div>
+
+  <script>
+    const META_POR_ARBOL = 20;
+    const VIDAS_INICIALES = 3;
+    const DISTANCIA_MINIMA = 36;
+    const RADIO_MANZANA = 13;
+
+    const escena = document.getElementById("escena-manzanas");
+    const cursorManzana = document.getElementById("manzana-cursor");
+    const arboles = [...document.querySelectorAll(".arbol")];
+    const corazones = document.querySelectorAll("#vidas-manzanas .corazon");
+    const mensajeEl = document.getElementById("mensaje-manzanas");
+    const mensajePerdisteEl = document.getElementById("mensaje-perdiste-manzanas");
+    const botonReiniciar = document.getElementById("reiniciar-manzanas");
+    const contadoresArbol = [
+      document.getElementById("contador-arbol-0"),
+      document.getElementById("contador-arbol-1"),
+      document.getElementById("contador-arbol-2")
+    ];
+
+    let vidas = VIDAS_INICIALES;
+    let conteoPorArbol = [0, 0, 0];
+    let manzanasColocadas = [];
+    let terminado = false;
+
+    function actualizarContadorArbol(indice) {
+      contadoresArbol[indice].textContent =
+        "Arbol " + (indice + 1) + ": " + conteoPorArbol[indice] + " / " + META_POR_ARBOL;
+    }
+
+    function reiniciarCorazones() {
+      corazones.forEach((corazon) => {
+        corazon.textContent = "❤️";
+        corazon.classList.remove("rota", "perdida");
+      });
+    }
+
+    function romperCorazon() {
+      const restantes = [...corazones].filter((c) => !c.classList.contains("perdida"));
+      const corazon = restantes[restantes.length - 1];
+      if (!corazon) return;
+      corazon.textContent = "\u{1F494}";
+      corazon.classList.add("rota");
+      setTimeout(() => {
+        corazon.classList.add("perdida");
+      }, 350);
+    }
+
+    function perderVida() {
+      vidas--;
+      romperCorazon();
+      if (vidas <= 0) {
+        terminado = true;
+        setTimeout(() => {
+          mensajePerdisteEl.hidden = false;
+          botonReiniciar.textContent = "Empezar de Nuevo";
+        }, 400);
+      }
+    }
+
+    function reiniciarTodo() {
+      vidas = VIDAS_INICIALES;
+      conteoPorArbol = [0, 0, 0];
+      manzanasColocadas = [];
+      terminado = false;
+      mensajeEl.hidden = true;
+      mensajePerdisteEl.hidden = true;
+      botonReiniciar.textContent = "Reiniciar";
+      reiniciarCorazones();
+      contadoresArbol.forEach((_, indice) => actualizarContadorArbol(indice));
+      escena.querySelectorAll(".manzana").forEach((manzana) => manzana.remove());
+    }
+
+    function buscarArbolEnPunto(x, y, escenaRect) {
+      for (const arbol of arboles) {
+        const indice = Number(arbol.dataset.arbol);
+        const copas = arbol.querySelectorAll(".hoja-copa");
+        for (const copa of copas) {
+          const rect = copa.getBoundingClientRect();
+          const cx = rect.left + rect.width / 2 - escenaRect.left;
+          const cy = rect.top + rect.height / 2 - escenaRect.top;
+          const radio = rect.width / 2;
+          const distancia = Math.hypot(x - cx, y - cy);
+          if (distancia <= radio * 0.95) {
+            return indice;
+          }
+        }
+      }
+      return -1;
+    }
+
+    function demasiadoCerca(x, y) {
+      return manzanasColocadas.some((m) => Math.hypot(m.x - x, m.y - y) < DISTANCIA_MINIMA);
+    }
+
+    escena.addEventListener("mousemove", (evento) => {
+      const escenaRect = escena.getBoundingClientRect();
+      cursorManzana.hidden = false;
+      cursorManzana.style.left = (evento.clientX - escenaRect.left) + "px";
+      cursorManzana.style.top = (evento.clientY - escenaRect.top) + "px";
+    });
+
+    escena.addEventListener("mouseleave", () => {
+      cursorManzana.hidden = true;
+    });
+
+    escena.addEventListener("click", (evento) => {
+      cursorManzana.classList.add("manzana-cursor--presionado");
+      setTimeout(() => cursorManzana.classList.remove("manzana-cursor--presionado"), 150);
+
+      if (terminado) return;
+
+      const escenaRect = escena.getBoundingClientRect();
+      const x = evento.clientX - escenaRect.left;
+      const y = evento.clientY - escenaRect.top;
+
+      const indiceArbol = buscarArbolEnPunto(x, y, escenaRect);
+
+      if (indiceArbol === -1) {
+        perderVida();
+        return;
+      }
+
+      if (demasiadoCerca(x, y)) {
+        perderVida();
+        return;
+      }
+
+      if (conteoPorArbol[indiceArbol] >= META_POR_ARBOL) {
+        return;
+      }
+
+      const manzana = document.createElement("div");
+      manzana.className = "manzana";
+      manzana.style.left = x + "px";
+      manzana.style.top = y + "px";
+      manzana.style.width = RADIO_MANZANA * 2 + "px";
+      manzana.style.height = RADIO_MANZANA * 2 + "px";
+      escena.appendChild(manzana);
+
+      manzanasColocadas.push({ x, y });
+      conteoPorArbol[indiceArbol]++;
+      actualizarContadorArbol(indiceArbol);
+
+      const completo = conteoPorArbol.every((cantidad) => cantidad >= META_POR_ARBOL);
+      if (completo) {
+        terminado = true;
+        mensajeEl.hidden = false;
+      }
+    });
+
+    document.getElementById("reiniciar-manzanas").addEventListener("click", reiniciarTodo);
+
+    contadoresArbol.forEach((_, indice) => actualizarContadorArbol(indice));
+  </script>
+</body>
+</html>

@@ -495,7 +495,7 @@ body {
   background-color: #fff;
   border: 4px solid #cbd5e1;
   border-radius: 10px;
-  cursor: crosshair;
+  cursor: none;
   overflow: hidden;
 }
 
@@ -507,4 +507,163 @@ body {
   border-radius: 50%;
   transform: translate(-50%, -50%);
   pointer-events: none;
+}
+
+.sello-cursor {
+  position: absolute;
+  width: 34px;
+  height: 48px;
+  transform: translate(-50%, -88%);
+  pointer-events: none;
+  z-index: 2;
+  transition: transform 0.1s ease;
+}
+
+.sello-cursor__cuerpo {
+  width: 100%;
+  height: 68%;
+  background: linear-gradient(180deg, #475569, #0f172a);
+  border-radius: 6px 6px 3px 3px;
+}
+
+.sello-cursor__base {
+  width: 100%;
+  height: 26%;
+  margin-top: 3px;
+  background-color: #dc2626;
+  border-radius: 0 0 5px 5px;
+}
+
+.sello-cursor--presionado {
+  transform: translate(-50%, -88%) scale(0.85);
+}
+
+.arboles-contadores {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  font-weight: bold;
+  font-size: 1.1rem;
+  color: #2563eb;
+  margin: 8px 0;
+}
+
+.escena {
+  position: relative;
+  width: 100%;
+  height: 520px;
+  margin: 16px 0;
+  background-color: #87ceeb;
+  border: 4px solid #cbd5e1;
+  border-radius: 10px;
+  overflow: hidden;
+  cursor: none;
+}
+
+.sol {
+  position: absolute;
+  top: 26px;
+  left: 26px;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background-color: #fde047;
+}
+
+.suelo {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 95px;
+  background-color: #22a559;
+}
+
+.arboles {
+  position: absolute;
+  inset: 0;
+  display: flex;
+}
+
+.arbol {
+  position: relative;
+  flex: 1;
+}
+
+.tronco {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+  width: 48px;
+  height: 195px;
+  background-color: #b98457;
+}
+
+.hoja-copa {
+  position: absolute;
+  left: 50%;
+  border-radius: 50%;
+  background-color: #8ed627;
+}
+
+.hoja-copa--inferior {
+  bottom: 85px;
+  width: 260px;
+  height: 260px;
+  transform: translateX(-50%);
+}
+
+.hoja-copa--superior {
+  bottom: 245px;
+  width: 210px;
+  height: 210px;
+  transform: translateX(-50%);
+}
+
+.manzana {
+  position: absolute;
+  background-color: #dc2626;
+  border: 2px solid #991b1b;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+.manzana-cursor {
+  position: absolute;
+  width: 34px;
+  height: 40px;
+  transform: translate(-50%, -58%);
+  pointer-events: none;
+  z-index: 3;
+  transition: transform 0.1s ease;
+}
+
+.manzana-cursor__tallo {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 5px;
+  height: 12px;
+  background-color: #78350f;
+  border-radius: 2px;
+  transform: translateX(-50%) rotate(-15deg);
+}
+
+.manzana-cursor__cuerpo {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 32px;
+  height: 30px;
+  background-color: #dc2626;
+  border: 2px solid #991b1b;
+  border-radius: 50%;
+  transform: translateX(-50%);
+}
+
+.manzana-cursor--presionado {
+  transform: translate(-50%, -58%) scale(0.85);
 }
