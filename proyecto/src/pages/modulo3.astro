@@ -1,0 +1,13 @@
+---
+import LeccionLayout from '../layouts/LeccionLayout.astro';
+import Carrusel from '../components/Carrusel.astro';
+import BtnDescarga from '../components/BtnDescarga.astro';
+
+const slides = ['slide1.png', 'slide2.png', 'slide3.png', 'slide4.png', 'slide5.png', 'slide6.png', 'slide7.png', 'slide8.png', 'slide9.png', 'slide10.png', 'slide11.png'];
+---
+<LeccionLayout title="Modulo 3 - Teclado" tituloPagina="Modulo 3 - Teclado" volverHref="/curso1">
+  <div class="leccion">
+    <Carrusel carpeta="clase3" archivos={slides} />
+    <BtnDescarga href="/assets/descargas/clase3.pdf">Descargar PDF de la clase</BtnDescarga>
+  </div>
+</LeccionLayout>
