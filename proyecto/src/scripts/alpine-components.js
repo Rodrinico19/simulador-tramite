@@ -208,10 +208,46 @@ function pulso(totalPasadas, vidasIniciales, anchoZona) {
   };
 }
 
+function puntosRojos(total) {
+  return {
+    total,
+    puntos: [],
+    selloVisible: false,
+    sx: 0,
+    sy: 0,
+    presionado: false,
+    mover(evento) {
+      const rect = this.$refs.hoja.getBoundingClientRect();
+      this.sx = evento.clientX - rect.left;
+      this.sy = evento.clientY - rect.top;
+      this.selloVisible = true;
+    },
+    salir() {
+      this.selloVisible = false;
+    },
+    clic(evento) {
+      this.presionado = true;
+      setTimeout(() => {
+        this.presionado = false;
+      }, 150);
+      if (this.puntos.length >= this.total) return;
+      const rect = this.$refs.hoja.getBoundingClientRect();
+      this.puntos.push({
+        x: evento.clientX - rect.left,
+        y: evento.clientY - rect.top
+      });
+    },
+    reiniciar() {
+      this.puntos = [];
+    }
+  };
+}
+
 export function registerComponents(Alpine) {
   Alpine.data('carrusel', carrusel);
   Alpine.data('hoverIconos', hoverIconos);
   Alpine.data('apuntarQuieto', apuntarQuieto);
   Alpine.data('apuntarClic', apuntarClic);
   Alpine.data('pulso', pulso);
+  Alpine.data('puntosRojos', puntosRojos);
 }
