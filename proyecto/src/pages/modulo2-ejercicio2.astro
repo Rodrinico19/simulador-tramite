@@ -1,0 +1,31 @@
+---
+import LeccionLayout from '../layouts/LeccionLayout.astro';
+import Contador from '../components/juegos/Contador.astro';
+import MensajeExito from '../components/juegos/MensajeExito.astro';
+---
+<LeccionLayout title="Ejercicio 2 - Arrastrar y Soltar" tituloPagina="Arrastrar y Soltar" volverHref="/modulo2">
+  <div class="leccion">
+    <div class="juego-card juego-arrastre juego-card--solo" x-data="arrastrarSoltar(8)">
+      <p>Hacé clic y mantené apretado sobre el archivo, arrastralo hasta la carpeta, y soltalo ahi.</p>
+      <Contador expresion="`${completados} / ${total}`" />
+      <div class="area area--arrastre" x-ref="area">
+        <div class="zona-destino" x-ref="zona" :class="{ 'zona-destino--activa': zonaActiva }">
+          <span class="icono">📁</span>
+          Soltar aqui
+        </div>
+        <button
+          type="button"
+          class="archivo-arrastrable"
+          x-ref="archivo"
+          x-show="visible"
+          :style="`left:${ax}px; top:${ay}px`"
+          @mousedown="empezar($event)"
+          @mousemove.window="mover($event)"
+          @mouseup.window="soltar()"
+        >📄</button>
+      </div>
+      <MensajeExito show="terminado">✅ ¡Completado! Arrastraste los 8 archivos.</MensajeExito>
+      <button type="button" class="btn-reintentar" @click="reiniciar()">Jugar de nuevo</button>
+    </div>
+  </div>
+</LeccionLayout>

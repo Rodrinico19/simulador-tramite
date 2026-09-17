@@ -389,6 +389,69 @@ function dobleClic(total) {
   };
 }
 
+function arrastrarSoltar(total) {
+  return {
+    total,
+    completados: 0,
+    arrastrando: false,
+    offsetX: 0,
+    offsetY: 0,
+    ax: 40,
+    ay: 0,
+    visible: true,
+    zonaActiva: false,
+    terminado: false,
+    init() {
+      this.posicionInicial();
+    },
+    posicionInicial() {
+      this.ax = 40;
+      this.ay = this.$refs.area.clientHeight / 2 - 40;
+    },
+    empezar(evento) {
+      this.arrastrando = true;
+      const rect = this.$refs.archivo.getBoundingClientRect();
+      this.offsetX = evento.clientX - rect.left;
+      this.offsetY = evento.clientY - rect.top;
+    },
+    dentroDeZona() {
+      const archivoRect = this.$refs.archivo.getBoundingClientRect();
+      const zonaRect = this.$refs.zona.getBoundingClientRect();
+      const cx = archivoRect.left + archivoRect.width / 2;
+      const cy = archivoRect.top + archivoRect.height / 2;
+      return cx >= zonaRect.left && cx <= zonaRect.right && cy >= zonaRect.top && cy <= zonaRect.bottom;
+    },
+    mover(evento) {
+      if (!this.arrastrando) return;
+      const areaRect = this.$refs.area.getBoundingClientRect();
+      this.ax = evento.clientX - areaRect.left - this.offsetX;
+      this.ay = evento.clientY - areaRect.top - this.offsetY;
+      this.zonaActiva = this.dentroDeZona();
+    },
+    soltar() {
+      if (!this.arrastrando) return;
+      this.arrastrando = false;
+      const dentro = this.dentroDeZona();
+      this.zonaActiva = false;
+      if (dentro) {
+        this.completados++;
+        if (this.completados >= this.total) {
+          this.terminado = true;
+          this.visible = false;
+          return;
+        }
+      }
+      this.posicionInicial();
+    },
+    reiniciar() {
+      this.completados = 0;
+      this.terminado = false;
+      this.visible = true;
+      this.posicionInicial();
+    }
+  };
+}
+
 export function registerComponents(Alpine) {
   Alpine.data('carrusel', carrusel);
   Alpine.data('hoverIconos', hoverIconos);
@@ -398,4 +461,5 @@ export function registerComponents(Alpine) {
   Alpine.data('puntosRojos', puntosRojos);
   Alpine.data('manzanas', manzanas);
   Alpine.data('dobleClic', dobleClic);
+  Alpine.data('arrastrarSoltar', arrastrarSoltar);
 }
