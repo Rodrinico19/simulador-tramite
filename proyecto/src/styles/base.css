@@ -1,3 +1,15 @@
+:root {
+  --color-primary: #2563eb;
+  --color-primary-dark: #1d4ed8;
+  --color-primary-deep: #1e3a8a;
+  --color-accent: #7c3aed;
+  --color-text: #1e293b;
+  --color-text-muted: #475569;
+  --ease-suave: cubic-bezier(0.22, 1, 0.36, 1);
+  --sombra-tarjeta: 0 10px 20px rgba(30, 41, 59, 0.2), 0 2px 6px rgba(30, 41, 59, 0.12);
+  --sombra-tarjeta-hover: 0 18px 32px rgba(30, 41, 59, 0.28), 0 4px 10px rgba(30, 41, 59, 0.16);
+}
+
 html {
   font-size: 22px;
 }
@@ -12,7 +24,7 @@ body {
   background-attachment: fixed;
   background-position: center;
   min-height: 100vh;
-  color: #1e293b;
+  color: var(--color-text);
 }
 
 .header-pagina {
@@ -21,17 +33,19 @@ body {
   align-items: center;
   gap: 8px;
   color: #fff;
-  background: linear-gradient(135deg, #2563eb, #7c3aed);
+  background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
   margin: 0 0 24px;
   padding: 14px 24px;
   border-radius: 0 0 20px 20px;
-  box-shadow: 0 8px 20px rgba(37, 99, 235, 0.35);
+  box-shadow: 0 8px 24px rgba(37, 99, 235, 0.4), 0 2px 8px rgba(37, 99, 235, 0.25);
 }
 
 .header-pagina h1 {
   font-size: 1.8rem;
   text-align: center;
   margin: 0;
+  letter-spacing: 0.01em;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
 }
 
 .header-pagina .volver {
@@ -72,9 +86,9 @@ body {
   text-decoration: none;
   padding: 24px;
   box-sizing: border-box;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25);
+  box-shadow: var(--sombra-tarjeta);
   border: 3px solid rgba(255, 255, 255, 0.35);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition: transform 0.25s var(--ease-suave), box-shadow 0.25s var(--ease-suave);
 }
 
 .curso-card .icono {
@@ -83,8 +97,8 @@ body {
 
 .curso-card:hover,
 .curso-card:focus-visible {
-  transform: scale(1.06);
-  box-shadow: 0 16px 30px rgba(0, 0, 0, 0.4);
+  transform: scale(1.06) translateY(-2px);
+  box-shadow: var(--sombra-tarjeta-hover);
 }
 
 .curso-card--1 {
@@ -99,19 +113,20 @@ body {
   display: inline-block;
   margin: 24px;
   color: #fff;
-  background-color: #2563eb;
+  background-color: var(--color-primary);
   text-decoration: none;
   font-weight: bold;
   font-size: 1.2rem;
   padding: 10px 20px;
   border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(37, 99, 235, 0.35);
-  transition: background-color 0.2s ease, transform 0.2s ease;
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.4);
+  transition: background-color 0.25s var(--ease-suave), transform 0.25s var(--ease-suave), box-shadow 0.25s var(--ease-suave);
 }
 
 .volver:hover {
-  background-color: #1d4ed8;
+  background-color: var(--color-primary-dark);
   transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(37, 99, 235, 0.45);
 }
 
 .modulos-grid {
@@ -136,9 +151,9 @@ body {
   text-decoration: none;
   padding: 22px;
   box-sizing: border-box;
-  box-shadow: 0 10px 18px rgba(0, 0, 0, 0.22);
+  box-shadow: var(--sombra-tarjeta);
   border: 3px solid rgba(255, 255, 255, 0.35);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition: transform 0.25s var(--ease-suave), box-shadow 0.25s var(--ease-suave);
 }
 
 .modulo-card .icono {
@@ -147,8 +162,8 @@ body {
 
 .modulo-card:hover,
 .modulo-card:focus-visible {
-  transform: scale(1.06);
-  box-shadow: 0 16px 28px rgba(0, 0, 0, 0.38);
+  transform: scale(1.06) translateY(-2px);
+  box-shadow: var(--sombra-tarjeta-hover);
 }
 
 .modulo-card--1 { background: linear-gradient(135deg, #2563eb, #1e3a8a); }
@@ -165,9 +180,10 @@ body {
   margin: 0 auto 48px;
   padding: 32px 24px;
   text-align: center;
-  background: rgba(255, 255, 255, 0.75);
+  background: rgba(255, 255, 255, 0.8);
   border-radius: 24px;
-  box-shadow: 0 10px 30px rgba(30, 58, 138, 0.15);
+  box-shadow: 0 12px 32px rgba(30, 58, 138, 0.16), 0 2px 8px rgba(30, 58, 138, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.6);
 }
 
 .leccion h2 {

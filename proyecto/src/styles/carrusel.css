@@ -6,7 +6,7 @@
   width: 100%;
   max-width: 1150px;
   border-radius: 12px;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.22), 0 2px 6px rgba(0, 0, 0, 0.14);
 }
 
 .carrusel__controles {
@@ -21,23 +21,26 @@
 .carrusel__controles button {
   border: none;
   border-radius: 10px;
-  background-color: #2563eb;
+  background-color: var(--color-primary);
   color: #fff;
   font-size: 1.3rem;
   font-weight: bold;
   padding: 16px 28px;
   cursor: pointer;
-  transition: background-color 0.2s ease;
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+  transition: background-color 0.25s var(--ease-suave), transform 0.25s var(--ease-suave), box-shadow 0.25s var(--ease-suave);
 }
 
 .carrusel__controles button:hover {
-  background-color: #1d4ed8;
+  background-color: var(--color-primary-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(37, 99, 235, 0.38);
 }
 
 .carrusel__contador {
   font-weight: bold;
   font-size: 1.3rem;
-  color: #475569;
+  color: var(--color-text-muted);
 }
 
 .descargas-multiples {
@@ -62,9 +65,12 @@
   font-size: 1.3rem;
   padding: 18px 32px;
   border-radius: 10px;
-  transition: background-color 0.2s ease;
+  box-shadow: 0 4px 12px rgba(22, 163, 74, 0.32);
+  transition: background-color 0.25s var(--ease-suave), transform 0.25s var(--ease-suave), box-shadow 0.25s var(--ease-suave);
 }
 
 .btn-descarga:hover {
   background-color: #15803d;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(21, 128, 61, 0.4);
 }
