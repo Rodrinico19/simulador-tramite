@@ -1,0 +1,23 @@
+---
+import LeccionLayout from '../layouts/LeccionLayout.astro';
+import Contador from '../components/juegos/Contador.astro';
+import MensajeExito from '../components/juegos/MensajeExito.astro';
+---
+<LeccionLayout title="Ejercicio 3 - Clic Derecho" tituloPagina="Clic Derecho" volverHref="/modulo2">
+  <div class="leccion">
+    <div class="juego-card juego-clic juego-card--solo" x-data="clicDerecho(10)" @click.window="cerrarMenuFuera($event)">
+      <p>Hacele clic con el boton derecho del mouse a la carpeta y elegí cualquier opcion del menu que aparece.</p>
+      <Contador expresion="`${clics} / ${total}`" />
+      <div class="area area--grande" x-ref="area" @contextmenu.prevent>
+        <button type="button" class="carpeta carpeta--grande carpeta--centrada" x-show="visible" @contextmenu.prevent="abrirMenu($event)">📁</button>
+        <div class="menu-contextual" x-show="menuVisible" x-cloak :style="`left:${mx}px; top:${my}px`">
+          <button type="button" @click="elegirOpcion()">Abrir</button>
+          <button type="button" @click="elegirOpcion()">Copiar</button>
+          <button type="button" @click="elegirOpcion()">Eliminar</button>
+        </div>
+      </div>
+      <MensajeExito show="terminado">✅ ¡Completado! Hiciste clic derecho 10 veces.</MensajeExito>
+      <button type="button" class="btn-reintentar" @click="reiniciar()">Jugar de nuevo</button>
+    </div>
+  </div>
+</LeccionLayout>

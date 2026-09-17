@@ -452,6 +452,45 @@ function arrastrarSoltar(total) {
   };
 }
 
+function clicDerecho(total) {
+  return {
+    total,
+    clics: 0,
+    visible: true,
+    menuVisible: false,
+    mx: 0,
+    my: 0,
+    terminado: false,
+    abrirMenu(evento) {
+      const rect = this.$refs.area.getBoundingClientRect();
+      this.mx = evento.clientX - rect.left;
+      this.my = evento.clientY - rect.top;
+      this.menuVisible = true;
+    },
+    elegirOpcion() {
+      this.menuVisible = false;
+      this.clics++;
+      if (this.clics >= this.total) {
+        this.terminado = true;
+        this.visible = false;
+      } else {
+        this.visible = true;
+      }
+    },
+    cerrarMenuFuera(evento) {
+      if (this.menuVisible && !evento.target.closest('.menu-contextual')) {
+        this.menuVisible = false;
+      }
+    },
+    reiniciar() {
+      this.clics = 0;
+      this.terminado = false;
+      this.menuVisible = false;
+      this.visible = true;
+    }
+  };
+}
+
 export function registerComponents(Alpine) {
   Alpine.data('carrusel', carrusel);
   Alpine.data('hoverIconos', hoverIconos);
@@ -462,4 +501,5 @@ export function registerComponents(Alpine) {
   Alpine.data('manzanas', manzanas);
   Alpine.data('dobleClic', dobleClic);
   Alpine.data('arrastrarSoltar', arrastrarSoltar);
+  Alpine.data('clicDerecho', clicDerecho);
 }
