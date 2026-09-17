@@ -24,8 +24,14 @@ pasa de JS inline a Alpine.js.
   actuales (`modulo1-ejercicio3.html` → ruta `/modulo1-ejercicio3`,
   etc.) — no hay nada externo enlazando al sitio todavía, pero no hay
   motivo para cambiarlas.
-- Fuera de alcance: hosting/deploy (sigue siendo local), cambios de
-  diseño visual (la migración preserva el look actual tal cual),
+- Además de la migración técnica, un **rediseño visual** para que el
+  sitio se vea profesional/pulido (paleta de colores coherente,
+  tipografía cuidada, spacing consistente, sombras/bordes suaves en
+  tarjetas y botones) — manteniendo textos, botones y objetivos de
+  clic **igual de grandes** que hoy (público de adultos mayores, ver
+  [[feedback_elderly_ui_sizing]]). No se achica ni densifica nada, solo
+  se le sube el nivel de terminación visual.
+- Fuera de alcance: hosting/deploy (sigue siendo local),
   tests automatizados (no aportan valor para contenido mayormente
   visual/interactivo de este tipo).
 
@@ -142,3 +148,13 @@ actual:
 - El carrusel de cada módulo navega igual (anterior/siguiente/contador).
 - Los links "Volver" y las descargas de PDF siguen apuntando bien.
 - `astro build` corre sin errores al final.
+
+## Consideraciones futuras (fuera de alcance de esta migración)
+
+- Cuando el proyecto escale y se agreguen usuarios/contraseñas
+  (login), `proyecto/` se mantiene estático — el login se resuelve
+  llamando a un backend aparte (por ejemplo el `backend` que ya existe
+  en la raíz del workspace, `tramites-facil`), con Alpine.js haciendo
+  el `fetch` al endpoint de auth y guardando la sesión/token en el
+  cliente. No requiere pasar Astro a modo SSR ni tocar la arquitectura
+  de esta migración.
