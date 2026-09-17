@@ -1,0 +1,50 @@
+---
+import LeccionLayout from '../layouts/LeccionLayout.astro';
+import Vidas from '../components/juegos/Vidas.astro';
+import MensajeExito from '../components/juegos/MensajeExito.astro';
+import MensajePerdiste from '../components/juegos/MensajePerdiste.astro';
+---
+<LeccionLayout title="Ejercicio 6 - Colocar Manzanas al Arbolito" tituloPagina="Colocar Manzanas al Arbolito" volverHref="/modulo1">
+  <div class="leccion">
+    <div class="juego-card juego-manzanas juego-card--solo" x-data="manzanas(20, 3, 36, 13)">
+      <p>Hacé clic en las hojas verdes de los 3 arboles para poner manzanas. Si el punto queda fuera del verde, o muy pegado a otra manzana, perdés una vida.</p>
+      <Vidas array="vidas" />
+      <div class="arboles-contadores">
+        <template x-for="(c, i) in conteoPorArbol" :key="i">
+          <span x-text="`Arbol ${i + 1}: ${c} / ${meta}`"></span>
+        </template>
+      </div>
+      <div class="escena" x-ref="escena" @mousemove="mover($event)" @mouseleave="salir()" @click="clic($event)">
+        <div class="sol"></div>
+        <div class="arboles">
+          <div class="arbol" data-arbol="0">
+            <div class="hoja-copa hoja-copa--superior"></div>
+            <div class="hoja-copa hoja-copa--inferior"></div>
+            <div class="tronco"></div>
+          </div>
+          <div class="arbol" data-arbol="1">
+            <div class="hoja-copa hoja-copa--superior"></div>
+            <div class="hoja-copa hoja-copa--inferior"></div>
+            <div class="tronco"></div>
+          </div>
+          <div class="arbol" data-arbol="2">
+            <div class="hoja-copa hoja-copa--superior"></div>
+            <div class="hoja-copa hoja-copa--inferior"></div>
+            <div class="tronco"></div>
+          </div>
+        </div>
+        <div class="suelo"></div>
+        <template x-for="(m, i) in manzanasColocadas" :key="i">
+          <div class="manzana" :style="`left:${m.x}px; top:${m.y}px; width:${radio * 2}px; height:${radio * 2}px`"></div>
+        </template>
+        <div class="manzana-cursor" x-show="cursorVisible" :class="{ 'manzana-cursor--presionado': presionado }" :style="`left:${cx}px; top:${cy}px`">
+          <div class="manzana-cursor__tallo"></div>
+          <div class="manzana-cursor__cuerpo"></div>
+        </div>
+      </div>
+      <MensajeExito show="completado">✅ ¡Completado! Los 3 arboles tienen sus manzanas.</MensajeExito>
+      <MensajePerdiste show="mensajePerdiste">💔 ¡Te quedaste sin vidas!<br>Empezar de Nuevo</MensajePerdiste>
+      <button type="button" class="btn-reintentar" @click="reiniciar()" x-text="textoBoton"></button>
+    </div>
+  </div>
+</LeccionLayout>

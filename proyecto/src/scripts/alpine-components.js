@@ -243,6 +243,106 @@ function puntosRojos(total) {
   };
 }
 
+function manzanas(metaPorArbol, vidasIniciales, distanciaMinima, radioManzana) {
+  return {
+    meta: metaPorArbol,
+    radio: radioManzana,
+    vidas: estadoVidasInicial(vidasIniciales),
+    vidasRestantes: vidasIniciales,
+    conteoPorArbol: [0, 0, 0],
+    manzanasColocadas: [],
+    terminado: false,
+    completado: false,
+    mensajePerdiste: false,
+    textoBoton: 'Reiniciar',
+    cursorVisible: false,
+    presionado: false,
+    cx: 0,
+    cy: 0,
+    mover(evento) {
+      const rect = this.$refs.escena.getBoundingClientRect();
+      this.cursorVisible = true;
+      this.cx = evento.clientX - rect.left;
+      this.cy = evento.clientY - rect.top;
+    },
+    salir() {
+      this.cursorVisible = false;
+    },
+    buscarArbolEnPunto(x, y, escenaRect) {
+      const arboles = this.$refs.escena.querySelectorAll('.arbol');
+      for (const arbol of arboles) {
+        const indice = Number(arbol.dataset.arbol);
+        const copas = arbol.querySelectorAll('.hoja-copa');
+        for (const copa of copas) {
+          const rect = copa.getBoundingClientRect();
+          const cx = rect.left + rect.width / 2 - escenaRect.left;
+          const cy = rect.top + rect.height / 2 - escenaRect.top;
+          const radio = rect.width / 2;
+          const distancia = Math.hypot(x - cx, y - cy);
+          if (distancia <= radio * 0.95) return indice;
+        }
+      }
+      return -1;
+    },
+    demasiadoCerca(x, y) {
+      return this.manzanasColocadas.some((m) => Math.hypot(m.x - x, m.y - y) < distanciaMinima);
+    },
+    clic(evento) {
+      this.presionado = true;
+      setTimeout(() => {
+        this.presionado = false;
+      }, 150);
+      if (this.terminado) return;
+
+      const rect = this.$refs.escena.getBoundingClientRect();
+      const x = evento.clientX - rect.left;
+      const y = evento.clientY - rect.top;
+      const indiceArbol = this.buscarArbolEnPunto(x, y, rect);
+
+      if (indiceArbol === -1) {
+        this.perderVida();
+        return;
+      }
+      if (this.demasiadoCerca(x, y)) {
+        this.perderVida();
+        return;
+      }
+      if (this.conteoPorArbol[indiceArbol] >= this.meta) return;
+
+      this.manzanasColocadas.push({ x, y });
+      this.conteoPorArbol[indiceArbol]++;
+
+      const completo = this.conteoPorArbol.every((c) => c >= this.meta);
+      if (completo) {
+        this.terminado = true;
+        this.completado = true;
+      }
+    },
+    perderVida() {
+      this.vidasRestantes--;
+      romperVida(this.vidas);
+      if (this.vidasRestantes <= 0) {
+        this.terminado = true;
+        setTimeout(() => {
+          this.mensajePerdiste = true;
+          this.textoBoton = 'Empezar de Nuevo';
+        }, 400);
+      }
+    },
+    reiniciar() {
+      this.vidas = estadoVidasInicial(vidasIniciales);
+      this.vidasRestantes = vidasIniciales;
+      this.conteoPorArbol = [0, 0, 0];
+      this.manzanasColocadas = [];
+      this.terminado = false;
+      this.completado = false;
+      this.mensajePerdiste = false;
+      this.textoBoton = 'Reiniciar';
+      this.cursorVisible = false;
+    }
+  };
+}
+
 export function registerComponents(Alpine) {
   Alpine.data('carrusel', carrusel);
   Alpine.data('hoverIconos', hoverIconos);
@@ -250,4 +350,5 @@ export function registerComponents(Alpine) {
   Alpine.data('apuntarClic', apuntarClic);
   Alpine.data('pulso', pulso);
   Alpine.data('puntosRojos', puntosRojos);
+  Alpine.data('manzanas', manzanas);
 }
