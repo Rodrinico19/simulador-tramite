@@ -58,7 +58,41 @@ function hoverIconos() {
   };
 }
 
+function apuntarQuieto(duracionMs) {
+  return {
+    duracion: duracionMs,
+    progreso: 0,
+    intervalo: null,
+    completado: false,
+    get porcentaje() {
+      return Math.min(100, Math.round((this.progreso / this.duracion) * 100));
+    },
+    entrar() {
+      if (this.progreso >= this.duracion) return;
+      this.intervalo = setInterval(() => {
+        this.progreso += 100;
+        if (this.progreso >= this.duracion) {
+          clearInterval(this.intervalo);
+          this.completado = true;
+        }
+      }, 100);
+    },
+    salir() {
+      clearInterval(this.intervalo);
+      if (this.progreso < this.duracion) {
+        this.progreso = 0;
+      }
+    },
+    reiniciar() {
+      clearInterval(this.intervalo);
+      this.progreso = 0;
+      this.completado = false;
+    }
+  };
+}
+
 export function registerComponents(Alpine) {
   Alpine.data('carrusel', carrusel);
   Alpine.data('hoverIconos', hoverIconos);
+  Alpine.data('apuntarQuieto', apuntarQuieto);
 }

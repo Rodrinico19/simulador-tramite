@@ -1,0 +1,14 @@
+---
+import LeccionLayout from '../layouts/LeccionLayout.astro';
+import MensajeExito from '../components/juegos/MensajeExito.astro';
+---
+<LeccionLayout title="Ejercicio 2 - Apuntar y Quedarse Quieto" tituloPagina="Apuntar y Quedarse Quieto" volverHref="/modulo1">
+  <div class="leccion">
+    <div class="juego-card juego-quieto juego-card--solo" x-data="apuntarQuieto(15000)">
+      <p>Poné el mouse sobre el circulo y no lo muevas por 15 segundos.</p>
+      <div class="objetivo" :style="`--progreso:${porcentaje}`" @mouseenter="entrar()" @mouseleave="salir()" x-text="`${porcentaje}%`"></div>
+      <MensajeExito show="completado">✅ ¡Completado! Te quedaste quieto 15 segundos.</MensajeExito>
+      <button type="button" class="btn-reintentar" @click="reiniciar()">Reiniciar</button>
+    </div>
+  </div>
+</LeccionLayout>
