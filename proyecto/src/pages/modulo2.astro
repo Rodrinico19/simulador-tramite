@@ -1,0 +1,34 @@
+---
+import LeccionLayout from '../layouts/LeccionLayout.astro';
+import Carrusel from '../components/Carrusel.astro';
+import BtnDescarga from '../components/BtnDescarga.astro';
+import EjercicioCard from '../components/EjercicioCard.astro';
+
+const slidesClase2 = ['slide1.png', 'slide2.png', 'slide3.png', 'slide4.png', 'slide5.png', 'slide6.png', 'slide7.png', 'slide8.png', 'slide9.png', 'slide10.png', 'slide11.png', 'slide12.png'];
+const slidesCarpetas = ['slide1.png', 'slide2.png', 'slide3.png', 'slide4.png', 'slide5.png', 'slide6.png', 'slide7.png', 'slide8.png', 'slide9.png'];
+---
+<LeccionLayout title="Modulo 2 - Mouse Medio" tituloPagina="Modulo 2 - Mouse Medio" volverHref="/curso1">
+  <div class="leccion">
+    <Carrusel carpeta="clase2" archivos={slidesClase2} />
+    <BtnDescarga href="/assets/descargas/clase2.pdf">Descargar PDF de la clase</BtnDescarga>
+  </div>
+
+  <div class="leccion ejercicios">
+    <h2>Ejercicios Practicos</h2>
+    <div class="juegos-grid">
+      <EjercicioCard href="/modulo2-ejercicio1" icono="🖱️" variante={1} titulo="Doble Clic">Hacele doble clic a la carpeta para abrirla, 10 veces.</EjercicioCard>
+      <EjercicioCard href="/modulo2-ejercicio2" icono="📄" variante={2} titulo="Arrastrar y Soltar">Arrastrá el archivo hasta la carpeta, 8 veces.</EjercicioCard>
+      <EjercicioCard href="/modulo2-ejercicio3" icono="🖱️" variante={3} titulo="Clic Derecho">Hacele clic derecho a la carpeta y elegí una opcion del menu, 10 veces.</EjercicioCard>
+    </div>
+  </div>
+
+  <div class="leccion">
+    <h2>Carpetas y Clic Derecho</h2>
+    <Carrusel carpeta="clase2-carpetas" archivos={slidesCarpetas} />
+    <div class="descargas-multiples">
+      <BtnDescarga href="/assets/descargas/clase2-carpetas.pdf">Descargar Practica de Carpetas</BtnDescarga>
+      <BtnDescarga href="/assets/descargas/manual-carpetas.pdf">Descargar Manual de Carpetas</BtnDescarga>
+      <BtnDescarga href="/assets/descargas/deberes-carpetas.pdf">Descargar Deberes</BtnDescarga>
+    </div>
+  </div>
+</LeccionLayout>
