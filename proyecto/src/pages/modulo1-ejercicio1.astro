@@ -1,0 +1,18 @@
+---
+import LeccionLayout from '../layouts/LeccionLayout.astro';
+import MensajeExito from '../components/juegos/MensajeExito.astro';
+---
+<LeccionLayout title="Ejercicio 1 - Mover la Flechita" tituloPagina="Mover la Flechita" volverHref="/modulo1">
+  <div class="leccion">
+    <div class="juego-card juego-mover juego-card--solo" x-data="hoverIconos()">
+      <p>Pasa el mouse por encima de los 8 iconos, sin hacer clic.</p>
+      <div class="iconos">
+        <template x-for="(icono, i) in iconos" :key="i">
+          <span class="icono" :class="{ marcado: marcados.includes(i) }" @mouseenter="marcar(i)" x-text="icono"></span>
+        </template>
+      </div>
+      <MensajeExito show="completado">✅ ¡Completado! Pasaste por los 8 iconos.</MensajeExito>
+      <button type="button" class="btn-reintentar" @click="reiniciar()">Reiniciar</button>
+    </div>
+  </div>
+</LeccionLayout>

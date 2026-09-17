@@ -42,6 +42,23 @@ function carrusel(carpeta, archivos) {
   };
 }
 
+function hoverIconos() {
+  return {
+    iconos: ['📁', '🖼️', '🎵', '📄', '🗑️', '📷', '🎬', '📚'],
+    marcados: [],
+    completado: false,
+    marcar(i) {
+      if (!this.marcados.includes(i)) this.marcados.push(i);
+      this.completado = this.marcados.length === this.iconos.length;
+    },
+    reiniciar() {
+      this.marcados = [];
+      this.completado = false;
+    }
+  };
+}
+
 export function registerComponents(Alpine) {
   Alpine.data('carrusel', carrusel);
+  Alpine.data('hoverIconos', hoverIconos);
 }
