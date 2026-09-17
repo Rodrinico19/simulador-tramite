@@ -1,0 +1,180 @@
+html {
+  font-size: 22px;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background:
+    linear-gradient(160deg, rgba(219, 234, 254, 0.75) 0%, rgba(238, 242, 255, 0.75) 45%, rgba(240, 253, 250, 0.8) 100%),
+    url("/assets/fondo/fondo.jpg");
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center;
+  min-height: 100vh;
+  color: #1e293b;
+}
+
+.header-pagina {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  color: #fff;
+  background: linear-gradient(135deg, #2563eb, #7c3aed);
+  margin: 0 0 24px;
+  padding: 14px 24px;
+  border-radius: 0 0 20px 20px;
+  box-shadow: 0 8px 20px rgba(37, 99, 235, 0.35);
+}
+
+.header-pagina h1 {
+  font-size: 1.8rem;
+  text-align: center;
+  margin: 0;
+}
+
+.header-pagina .volver {
+  align-self: flex-start;
+  margin: 0;
+  padding: 8px 18px;
+  font-size: 1.4rem;
+  background-color: #fff;
+  color: #2563eb;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.header-pagina .volver:hover {
+  background-color: #e0e7ff;
+}
+
+.cursos {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 24px;
+  padding: 24px;
+}
+
+.curso-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 360px;
+  height: 220px;
+  border-radius: 20px;
+  color: #fff;
+  font-size: 1.9rem;
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+  padding: 24px;
+  box-sizing: border-box;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25);
+  border: 3px solid rgba(255, 255, 255, 0.35);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.curso-card .icono {
+  font-size: 2.8rem;
+}
+
+.curso-card:hover,
+.curso-card:focus-visible {
+  transform: scale(1.06);
+  box-shadow: 0 16px 30px rgba(0, 0, 0, 0.4);
+}
+
+.curso-card--1 {
+  background: linear-gradient(135deg, #2563eb, #1e3a8a);
+}
+
+.curso-card--2 {
+  background: linear-gradient(135deg, #f97316, #c2410c);
+}
+
+.volver {
+  display: inline-block;
+  margin: 24px;
+  color: #fff;
+  background-color: #2563eb;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 1.2rem;
+  padding: 10px 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(37, 99, 235, 0.35);
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.volver:hover {
+  background-color: #1d4ed8;
+  transform: translateY(-2px);
+}
+
+.modulos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 24px;
+  padding: 0 24px 24px;
+}
+
+.modulo-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 190px;
+  border-radius: 20px;
+  color: #fff;
+  font-size: 1.4rem;
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+  padding: 22px;
+  box-sizing: border-box;
+  box-shadow: 0 10px 18px rgba(0, 0, 0, 0.22);
+  border: 3px solid rgba(255, 255, 255, 0.35);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.modulo-card .icono {
+  font-size: 2.4rem;
+}
+
+.modulo-card:hover,
+.modulo-card:focus-visible {
+  transform: scale(1.06);
+  box-shadow: 0 16px 28px rgba(0, 0, 0, 0.38);
+}
+
+.modulo-card--1 { background: linear-gradient(135deg, #2563eb, #1e3a8a); }
+.modulo-card--2 { background: linear-gradient(135deg, #f97316, #c2410c); }
+.modulo-card--3 { background: linear-gradient(135deg, #22c55e, #15803d); }
+.modulo-card--4 { background: linear-gradient(135deg, #a855f7, #7e22ce); }
+.modulo-card--5 { background: linear-gradient(135deg, #ef4444, #b91c1c); }
+.modulo-card--6 { background: linear-gradient(135deg, #06b6d4, #0e7490); }
+.modulo-card--7 { background: linear-gradient(135deg, #eab308, #a16207); }
+.modulo-card--8 { background: linear-gradient(135deg, #ec4899, #be185d); }
+
+.leccion {
+  max-width: 1200px;
+  margin: 0 auto 48px;
+  padding: 32px 24px;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.75);
+  border-radius: 24px;
+  box-shadow: 0 10px 30px rgba(30, 58, 138, 0.15);
+}
+
+.leccion h2 {
+  font-size: 1.6rem;
+  margin: 0 0 20px;
+}
+
+[x-cloak] {
+  display: none !important;
+}

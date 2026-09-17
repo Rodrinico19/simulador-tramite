@@ -1,0 +1,140 @@
+.juegos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 24px;
+}
+
+.juego-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  background-color: #fff;
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+}
+
+.juego-card--solo {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 32px;
+  box-shadow: none;
+}
+
+.juego-card--solo p {
+  font-size: 1.3rem;
+}
+
+.ejercicio-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 8px;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 20px;
+  padding: 24px;
+  box-shadow: 0 10px 18px rgba(0, 0, 0, 0.22);
+  border: 3px solid rgba(255, 255, 255, 0.35);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.ejercicio-card:hover,
+.ejercicio-card:focus-visible {
+  transform: scale(1.05);
+  box-shadow: 0 16px 28px rgba(0, 0, 0, 0.35);
+}
+
+.ejercicio-card .icono {
+  font-size: 2.4rem;
+}
+
+.ejercicio-card h3 {
+  margin: 0;
+  font-size: 1.2rem;
+}
+
+.ejercicio-card p {
+  margin: 0;
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.ejercicio-card--1 { background: linear-gradient(135deg, #2563eb, #1e3a8a); }
+.ejercicio-card--2 { background: linear-gradient(135deg, #f97316, #c2410c); }
+.ejercicio-card--3 { background: linear-gradient(135deg, #22c55e, #15803d); }
+
+.juego-card h3 {
+  margin: 0;
+  font-size: 1.2rem;
+}
+
+.juego-card p {
+  margin: 0;
+  font-size: 1rem;
+  color: #475569;
+}
+
+.mensaje-exito {
+  color: #15803d;
+  font-weight: bold;
+}
+
+.contador-clic {
+  font-weight: bold;
+  font-size: 1.2rem;
+  color: #2563eb;
+}
+
+.btn-reintentar {
+  border: none;
+  border-radius: 10px;
+  background-color: #2563eb;
+  color: #fff;
+  font-weight: bold;
+  font-size: 1.3rem;
+  padding: 14px 26px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.btn-reintentar:hover {
+  background-color: #1d4ed8;
+}
+
+.vidas {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  font-size: 1.8rem;
+}
+
+.corazon {
+  display: inline-block;
+  transition: opacity 0.35s ease, transform 0.35s ease;
+}
+
+.corazon.rota {
+  animation: romper-corazon 0.35s ease;
+}
+
+.corazon.perdida {
+  opacity: 0;
+  transform: scale(0.4) rotate(20deg);
+}
+
+@keyframes romper-corazon {
+  0% { transform: scale(1); }
+  30% { transform: scale(1.35) rotate(-12deg); }
+  60% { transform: scale(0.8) rotate(10deg); }
+  100% { transform: scale(1); }
+}
+
+.mensaje-perdiste {
+  color: #b91c1c;
+  font-weight: bold;
+  font-size: 1.3rem;
+  line-height: 1.4;
+}
