@@ -1,0 +1,13 @@
+---
+import LeccionLayout from '../layouts/LeccionLayout.astro';
+import Carrusel from '../components/Carrusel.astro';
+import BtnDescarga from '../components/BtnDescarga.astro';
+
+const slides = ['slide1.png', 'slide2.png', 'slide3.png', 'slide4.png', 'slide5.png', 'slide6.png', 'slide7.png', 'slide8.png'];
+---
+<LeccionLayout title="Modulo 6 - Word Basico" tituloPagina="Modulo 6 - Word Basico" volverHref="/curso1">
+  <div class="leccion">
+    <Carrusel carpeta="clase6" archivos={slides} />
+    <BtnDescarga href="/assets/descargas/clase6.pdf">Descargar Practica de Word</BtnDescarga>
+  </div>
+</LeccionLayout>
