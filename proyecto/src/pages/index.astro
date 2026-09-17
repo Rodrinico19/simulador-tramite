@@ -1,0 +1,14 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CursoCard from '../components/CursoCard.astro';
+---
+<BaseLayout title="Proyecto">
+  <div class="header-pagina">
+    <h1>Aprende computacion</h1>
+  </div>
+
+  <div class="cursos">
+    <CursoCard href="/curso1" icono="🖥️" variante={1}>Curso 1 de Computacion</CursoCard>
+    <CursoCard href="/curso2" icono="💻" variante={2}>Curso 2 de Computacion</CursoCard>
+  </div>
+</BaseLayout>

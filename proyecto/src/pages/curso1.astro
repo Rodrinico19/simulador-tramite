@@ -1,0 +1,16 @@
+---
+import LeccionLayout from '../layouts/LeccionLayout.astro';
+import ModuloCard from '../components/ModuloCard.astro';
+---
+<LeccionLayout title="Curso 1 de Computacion" tituloPagina="Curso 1 de Computacion" volverHref="/">
+  <div class="modulos-grid">
+    <ModuloCard href="/modulo1" icono="🖱️" variante={1}>Modulo 1 - Introduccion - Mouse Basico</ModuloCard>
+    <ModuloCard href="/modulo2" icono="🎯" variante={2}>Modulo 2 - Mouse Medio</ModuloCard>
+    <ModuloCard href="/modulo3" icono="⌨️" variante={3}>Modulo 3 - Teclado</ModuloCard>
+    <ModuloCard href="/modulo4" icono="🖥️" variante={4}>Modulo 4 - Escritorio</ModuloCard>
+    <ModuloCard href="/modulo5" icono="🗂️" variante={5}>Modulo 5 - Ventanas y Explorador</ModuloCard>
+    <ModuloCard href="/modulo6" icono="📝" variante={6}>Modulo 6 - Word Basico</ModuloCard>
+    <ModuloCard href="/modulo7" icono="🌐" variante={7}>Modulo 7 - Internet</ModuloCard>
+    <ModuloCard href="/modulo8" icono="🔒" variante={8}>Modulo 8 - Seguridad Informatica</ModuloCard>
+  </div>
+</LeccionLayout>
