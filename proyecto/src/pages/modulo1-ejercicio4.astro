@@ -1,0 +1,26 @@
+---
+import LeccionLayout from '../layouts/LeccionLayout.astro';
+import Vidas from '../components/juegos/Vidas.astro';
+import Contador from '../components/juegos/Contador.astro';
+import MensajeExito from '../components/juegos/MensajeExito.astro';
+import MensajePerdiste from '../components/juegos/MensajePerdiste.astro';
+---
+<LeccionLayout title="Ejercicio 4 - Practicar el Pulso" tituloPagina="Practicar el Pulso" volverHref="/modulo1">
+  <div class="leccion">
+    <div class="juego-card juego-pulso juego-card--solo" x-data="pulso(10, 3, 90)">
+      <p>Mové el mouse de "Salida" hasta "Meta" sin que el cuadrado se salga del rectángulo. Hay que completar 10 pasadas.</p>
+      <Vidas array="vidas" />
+      <Contador expresion="`Pasada ${pasadas} / ${total}`" />
+      <div class="pulso-zona" x-ref="zona" @mousemove="mover($event)">
+        <div class="pulso-pista" x-ref="pista">
+          <span class="pulso-etiqueta pulso-etiqueta--salida">Salida</span>
+          <span class="pulso-etiqueta pulso-etiqueta--meta">Meta</span>
+        </div>
+        <div class="pulso-cuadrado" x-show="mostrarCuadrado" :style="`left:${cx}px; top:${cy}px`"></div>
+      </div>
+      <MensajeExito show="completado">✅ ¡Completado! Hiciste las 10 pasadas.</MensajeExito>
+      <MensajePerdiste show="mensajePerdiste">💔 ¡Te quedaste sin vidas!<br>Empezar de Nuevo</MensajePerdiste>
+      <button type="button" class="btn-reintentar" @click="reiniciar()" x-text="textoBoton"></button>
+    </div>
+  </div>
+</LeccionLayout>
