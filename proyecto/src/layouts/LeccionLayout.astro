@@ -1,0 +1,18 @@
+---
+import BaseLayout from './BaseLayout.astro';
+
+interface Props {
+  title: string;
+  tituloPagina: string;
+  volverHref: string;
+}
+
+const { title, tituloPagina, volverHref } = Astro.props;
+---
+<BaseLayout title={title}>
+  <div class="header-pagina">
+    <a class="volver" href={volverHref}>&larr; Volver</a>
+    <h1>{tituloPagina}</h1>
+  </div>
+  <slot />
+</BaseLayout>

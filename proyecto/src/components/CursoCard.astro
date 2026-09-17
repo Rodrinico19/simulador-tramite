@@ -1,0 +1,13 @@
+---
+interface Props {
+  href: string;
+  icono: string;
+  variante: 1 | 2;
+}
+
+const { href, icono, variante } = Astro.props;
+---
+<a class={`curso-card curso-card--${variante}`} href={href}>
+  <span class="icono">{icono}</span>
+  <slot />
+</a>

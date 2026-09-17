@@ -1,0 +1,8 @@
+---
+interface Props {
+  expresion: string;
+}
+
+const { expresion } = Astro.props;
+---
+<p class="contador-clic" x-text={expresion}></p>

@@ -1,0 +1,16 @@
+---
+interface Props {
+  array: string;
+}
+
+const { array } = Astro.props;
+---
+<div class="vidas">
+  <template x-for={`(v, i) in ${array}`} :key="i">
+    <span
+      class="corazon"
+      :class="{ rota: v === 'rota' || v === 'perdida', perdida: v === 'perdida' }"
+      x-text="v === 'entera' ? '❤️' : '💔'"
+    ></span>
+  </template>
+</div>

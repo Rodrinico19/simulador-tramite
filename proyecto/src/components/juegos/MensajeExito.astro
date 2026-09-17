@@ -1,0 +1,8 @@
+---
+interface Props {
+  show: string;
+}
+
+const { show } = Astro.props;
+---
+<p class="mensaje-exito" x-show={show} x-cloak><slot /></p>

@@ -1,0 +1,17 @@
+---
+interface Props {
+  carpeta: string;
+  archivos: string[];
+}
+
+const { carpeta, archivos } = Astro.props;
+const archivosJson = JSON.stringify(archivos);
+---
+<div class="carrusel" x-data={`carrusel('${carpeta}', ${archivosJson})`}>
+  <img class="carrusel__img" :src="src" :alt="alt">
+  <div class="carrusel__controles">
+    <button type="button" @click="anterior()">&larr; Anterior</button>
+    <span class="carrusel__contador" x-text="contador"></span>
+    <button type="button" @click="siguiente()">Siguiente &rarr;</button>
+  </div>
+</div>
