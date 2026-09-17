@@ -1,0 +1,18 @@
+---
+import LeccionLayout from '../layouts/LeccionLayout.astro';
+import Contador from '../components/juegos/Contador.astro';
+import MensajeExito from '../components/juegos/MensajeExito.astro';
+---
+<LeccionLayout title="Ejercicio 3 - Apuntar y Hacer Clic" tituloPagina="Apuntar y Hacer Clic" volverHref="/modulo1">
+  <div class="leccion">
+    <div class="juego-card juego-clic juego-card--solo" x-data="apuntarClic(30)">
+      <p>Buscá el icono y hacele clic. Cada vez que le acertás, aparece otro distinto en otro lugar.</p>
+      <Contador expresion="`${clics} / ${total}`" />
+      <div class="area" x-ref="area">
+        <button type="button" class="carpeta" x-show="visible" :style="`left:${x}px; top:${y}px`" x-text="icono" @click="clic()"></button>
+      </div>
+      <MensajeExito show="completado">✅ ¡Completado! Hiciste clic en los 30 iconos.</MensajeExito>
+      <button type="button" class="btn-reintentar" @click="reiniciar()">Jugar de nuevo</button>
+    </div>
+  </div>
+</LeccionLayout>
