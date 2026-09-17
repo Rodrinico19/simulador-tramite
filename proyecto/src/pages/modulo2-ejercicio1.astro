@@ -1,0 +1,18 @@
+---
+import LeccionLayout from '../layouts/LeccionLayout.astro';
+import Contador from '../components/juegos/Contador.astro';
+import MensajeExito from '../components/juegos/MensajeExito.astro';
+---
+<LeccionLayout title="Ejercicio 1 - Doble Clic" tituloPagina="Doble Clic" volverHref="/modulo2">
+  <div class="leccion">
+    <div class="juego-card juego-clic juego-card--solo" x-data="dobleClic(10)">
+      <p>Hacele doble clic a la carpeta para abrirla. Cada vez que la abrís, aparece otra en otro lugar.</p>
+      <Contador expresion="`${completados} / ${total}`" />
+      <div class="area" x-ref="area">
+        <button type="button" class="carpeta" :class="{ 'carpeta--abierta': abierta }" x-show="visible" :style="`left:${x}px; top:${y}px`" x-text="icono" @dblclick="dobleClic()"></button>
+      </div>
+      <MensajeExito show="terminado">✅ ¡Completado! Abriste las 10 carpetas.</MensajeExito>
+      <button type="button" class="btn-reintentar" @click="reiniciar()">Jugar de nuevo</button>
+    </div>
+  </div>
+</LeccionLayout>

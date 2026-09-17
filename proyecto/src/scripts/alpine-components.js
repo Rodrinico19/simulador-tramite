@@ -343,6 +343,52 @@ function manzanas(metaPorArbol, vidasIniciales, distanciaMinima, radioManzana) {
   };
 }
 
+function dobleClic(total) {
+  return {
+    total,
+    completados: 0,
+    x: 0,
+    y: 0,
+    visible: true,
+    abierta: false,
+    icono: '📁',
+    terminado: false,
+    init() {
+      this.mover();
+    },
+    mover() {
+      const area = this.$refs.area;
+      const maxX = Math.max(area.clientWidth - 120, 0);
+      const maxY = Math.max(area.clientHeight - 120, 0);
+      this.x = Math.random() * maxX;
+      this.y = Math.random() * maxY;
+      this.visible = true;
+    },
+    dobleClic() {
+      this.icono = '📂';
+      this.abierta = true;
+      this.completados++;
+      setTimeout(() => {
+        this.abierta = false;
+        this.icono = '📁';
+        if (this.completados >= this.total) {
+          this.terminado = true;
+          this.visible = false;
+        } else {
+          this.mover();
+        }
+      }, 450);
+    },
+    reiniciar() {
+      this.completados = 0;
+      this.terminado = false;
+      this.abierta = false;
+      this.icono = '📁';
+      this.mover();
+    }
+  };
+}
+
 export function registerComponents(Alpine) {
   Alpine.data('carrusel', carrusel);
   Alpine.data('hoverIconos', hoverIconos);
@@ -351,4 +397,5 @@ export function registerComponents(Alpine) {
   Alpine.data('pulso', pulso);
   Alpine.data('puntosRojos', puntosRojos);
   Alpine.data('manzanas', manzanas);
+  Alpine.data('dobleClic', dobleClic);
 }
