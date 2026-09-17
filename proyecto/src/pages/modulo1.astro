@@ -1,0 +1,30 @@
+---
+import LeccionLayout from '../layouts/LeccionLayout.astro';
+import Carrusel from '../components/Carrusel.astro';
+import BtnDescarga from '../components/BtnDescarga.astro';
+import EjercicioCard from '../components/EjercicioCard.astro';
+---
+<LeccionLayout title="Modulo 1 - Raton Basico" tituloPagina="Modulo 1 - Introduccion - Mouse Basico" volverHref="/curso1">
+  <div class="leccion">
+    <Carrusel carpeta="clase1" archivos={["slide1.png", "slide2.png", "slide3.jpg", "slide4.png", "slide5.png", "slide6.png", "slide7.png", "slide8.png"]} />
+    <BtnDescarga href="/assets/descargas/clase1.pdf">Descargar PDF de la clase</BtnDescarga>
+  </div>
+
+  <div class="leccion ejercicios">
+    <h2>Ejercicios Practicos</h2>
+    <div class="juegos-grid">
+      <EjercicioCard href="/modulo1-ejercicio1" icono="🖱️" variante={1} titulo="Mover la Flechita">Pasa el mouse por encima de los 8 iconos, sin hacer clic.</EjercicioCard>
+      <EjercicioCard href="/modulo1-ejercicio2" icono="🎯" variante={2} titulo="Apuntar y Quedarse Quieto">Poné el mouse sobre el circulo y no lo muevas por 15 segundos.</EjercicioCard>
+      <EjercicioCard href="/modulo1-ejercicio3" icono="👆" variante={3} titulo="Apuntar y Hacer Clic">Buscá y hacele clic a 30 carpetas, una por una.</EjercicioCard>
+    </div>
+  </div>
+
+  <div class="leccion ejercicios">
+    <h2>Mas Ejercicios</h2>
+    <div class="juegos-grid">
+      <EjercicioCard href="/modulo1-ejercicio4" icono="↔️" variante={1} titulo="Practicar el Pulso">Mové el cuadrado de izquierda a derecha dentro de la franja, sin salirte.</EjercicioCard>
+      <EjercicioCard href="/modulo1-ejercicio5" icono="🔴" variante={2} titulo="Hacer Puntos Rojos">Hacé clic izquierdo en la hoja para dejar 20 puntos rojos.</EjercicioCard>
+      <EjercicioCard href="/modulo1-ejercicio6" icono="🍎" variante={3} titulo="Colocar Manzanas al Arbolito">Hacé clic en las hojas verdes de los 3 arboles para poner manzanas, sin salirte del verde.</EjercicioCard>
+    </div>
+  </div>
+</LeccionLayout>
